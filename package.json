@@ -1,6 +1,6 @@
 {
   "name": "lrc.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightly module for LRC format string parsing and serialization",
   "main": "dist/lrc.common.js",
   "scripts": {
