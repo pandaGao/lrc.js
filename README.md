@@ -7,8 +7,15 @@
 A lightly module for LRC format string parsing and serialization
 
 # Install
+## From npm
 ```bash
 npm i lrc.js --save
+```
+## In browser
+```html
+<script src="https://unpkg.com/lrc.js/dist/lrc.js"></script>
+
+<script src="https://unpkg.com/lrc.js/dist/lrc.min.js"></script>
 ```
 
 # Usage
