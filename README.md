@@ -1,5 +1,9 @@
 # Lrc.js
 
+[![npm version](https://badge.fury.io/js/lrc.js.svg)](https://badge.fury.io/js/lrc.js)
+[![codecov](https://codecov.io/gh/pandaGao/lrc.js/branch/master/graph/badge.svg)](https://codecov.io/gh/pandaGao/lrc.js)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 A lightly module for LRC format string parsing and serialization
 
 # Install

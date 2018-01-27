@@ -1,5 +1,5 @@
-const assert = require('assert')
-const LRC = require('../src/index.js')
+import assert from 'assert'
+import LRC from '../src/index.js'
 
 const defaultLyrics = {
   al: '',

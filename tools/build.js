@@ -10,19 +10,37 @@ const banner =
 * Released under the MIT License.
 */
 `
+const babelConfig = {
+  babelrc: false,
+  presets: [
+    [
+      'env',
+      {
+        modules: false
+      }
+    ]
+  ]
+}
 
 async function build () {
   await del(['dist/*'])
   const bundle = await rollup.rollup({
     input: 'src/index.js',
     plugins: [
-      babel()
+      babel(babelConfig)
     ]
   })
   // CommonJS Package
   await bundle.write({
     file: 'dist/lrc.common.js',
     format: 'cjs',
+    name: 'LRC',
+    banner
+  })
+  // ES Module Package
+  await bundle.write({
+    file: 'dist/lrc.esm.js',
+    format: 'es',
     name: 'LRC',
     banner
   })
@@ -38,7 +56,7 @@ async function build () {
   const minifyBundle = await rollup.rollup({
     input: 'src/index.js',
     plugins: [
-      babel(),
+      babel(babelConfig),
       uglify({
         output: {
           comments: function (node, comment) {

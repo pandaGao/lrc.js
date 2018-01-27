@@ -5,68 +5,16 @@
 */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(factory());
+	(global.LRC = factory());
 }(this, (function () { 'use strict';
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _sliceIterator(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-function _slicedToArray(arr, i) {
-  if (Array.isArray(arr)) {
-    return arr;
-  } else if (Symbol.iterator in Object(arr)) {
-    return _sliceIterator(arr, i);
-  } else {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance");
-  }
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var metaTags = ['ti', 'al', 'ar', 'au', 'by', 'offset', 'length', 're', 've'];
 var validLineReg = /^\[[^:]+:[^\]]*\]/;
@@ -74,26 +22,25 @@ var timeReg = /\[(\d+):(\d+)(?:.(\d+))?\]/;
 var timeListReg = /\[(\d+):(\d+)(?:.(\d+))?\]/g;
 var metaReg = /\[([a-z]+):([^\]]*)\]/;
 
-var LRC =
-/*#__PURE__*/
-function () {
+var LRC = function () {
   function LRC() {
     var lyrics = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
     _classCallCheck(this, LRC);
 
     if (typeof lyrics === 'string') {
       return LRC.parse(lyrics);
     }
-
     this.clone(lyrics);
   }
 
   _createClass(LRC, [{
-    key: "clone",
+    key: 'clone',
     value: function clone() {
       var _this = this;
 
       var lyrics = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
       metaTags.forEach(function (t) {
         _this[t] = lyrics[t] || '';
       });
@@ -107,15 +54,16 @@ function () {
       return this;
     }
   }, {
-    key: "stringify",
+    key: 'stringify',
     value: function stringify() {
       var _this2 = this;
 
       var timeFixed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 2;
+
       var lrc = metaTags.filter(function (k) {
         return !!_this2[k];
       }).map(function (key) {
-        return key === 'offset' ? "[".concat(key, ":").concat(_this2[key] > 0 ? '+' : '-').concat(Math.abs(_this2[key]), "]") : "[".concat(key, ":").concat(_this2[key], "]");
+        return key === 'offset' ? '[' + key + ':' + (_this2[key] > 0 ? '+' : '-') + Math.abs(_this2[key]) + ']' : '[' + key + ':' + _this2[key] + ']';
       }).join('\n');
       lrc += '\n';
       lrc += this.lines.map(function (line) {
@@ -125,17 +73,15 @@ function () {
         m = m < 10 ? '0' + m : '' + m;
         s = s < 10 ? '0' + s : '' + s;
         ms = Math.round(ms * Math.pow(10, timeFixed)) + '';
-
         while (ms.length < timeFixed) {
           ms = '0' + ms;
         }
-
-        return "[".concat(m, ":").concat(s, ".").concat(ms, "]").concat(line.text);
+        return '[' + m + ':' + s + '.' + ms + ']' + line.text;
       }).join('\n');
       return lrc.trim();
     }
   }, {
-    key: "toJSON",
+    key: 'toJSON',
     value: function toJSON() {
       var _this3 = this;
 
@@ -152,7 +98,7 @@ function () {
       return jsonObj;
     }
   }, {
-    key: "findIndex",
+    key: 'findIndex',
     value: function findIndex(currentTime) {
       var idx = -1;
 
@@ -166,7 +112,7 @@ function () {
       return idx < 0 ? this.lines.length - 1 : idx - 1;
     }
   }, {
-    key: "previousLine",
+    key: 'previousLine',
     value: function previousLine(currentTime) {
       var idx = this.findIndex(currentTime);
       return idx <= 0 ? null : {
@@ -176,7 +122,7 @@ function () {
       };
     }
   }, {
-    key: "currentLine",
+    key: 'currentLine',
     value: function currentLine(currentTime) {
       var idx = this.findIndex(currentTime);
       return idx < 0 ? null : {
@@ -186,7 +132,7 @@ function () {
       };
     }
   }, {
-    key: "nextLine",
+    key: 'nextLine',
     value: function nextLine(currentTime) {
       var idx = this.findIndex(currentTime);
       return idx < this.lines.length - 1 ? {
@@ -196,9 +142,10 @@ function () {
       } : null;
     }
   }], [{
-    key: "parse",
+    key: 'parse',
     value: function parse() {
       var lrc = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
       var defaultLyrics = {
         al: '',
         ar: '',
@@ -240,7 +187,6 @@ function () {
 
           type = type.trim();
           _text = _text.trim();
-
           if (metaTags.indexOf(type) > -1) {
             if (type !== 'offset') {
               lyrics[type] = _text || '';
@@ -250,7 +196,6 @@ function () {
             }
           }
         }
-
         return lyrics;
       }, defaultLyrics);
       parsedLyrics.lines.sort(function (a, b) {
@@ -259,9 +204,10 @@ function () {
       return new LRC(parsedLyrics);
     }
   }]);
+
   return LRC;
 }();
 
-module.exports = LRC;
+return LRC;
 
 })));

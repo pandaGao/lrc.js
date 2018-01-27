@@ -159,4 +159,4 @@ class LRC {
   }
 }
 
-module.exports = LRC
+export default LRC
