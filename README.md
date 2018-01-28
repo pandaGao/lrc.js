@@ -1,7 +1,8 @@
 # Lrc.js
 
 [![npm version](https://badge.fury.io/js/lrc.js.svg)](https://badge.fury.io/js/lrc.js)
-[![codecov](https://codecov.io/gh/pandaGao/lrc.js/branch/master/graph/badge.svg)](https://codecov.io/gh/pandaGao/lrc.js)
+[![Build Status](https://travis-ci.org/pandaGao/lrc.js.svg?branch=master)](https://travis-ci.org/pandaGao/lrc.js)
+[![Coverage Status](https://coveralls.io/repos/github/pandaGao/lrc.js/badge.svg?branch=master)](https://coveralls.io/github/pandaGao/lrc.js?branch=master)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 A lightly module for LRC format string parsing and serialization
