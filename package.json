@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "description": "A lightly module for LRC format string parsing and serialization",
   "main": "dist/lrc.common.js",
+  "module": "dist/lrc.esm.js",
   "scripts": {
     "build": "node ./tools/build.js",
     "lint": "standard --fix ./src/index.js",

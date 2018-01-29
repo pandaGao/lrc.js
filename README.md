@@ -89,7 +89,7 @@ let lrc =`
 [00:02.00][00:04.00] Line 2 & Line 4
 `
 let lyrics = LRC.parse(lrc)
-lyrics.findIndex(0) // null
+lyrics.findIndex(0) // -1
 lyrics.findIndex(1.5) // 0
 lyrics.findIndex(5) // 3
 lyrics.findIndex(6) // 4
